@@ -59,6 +59,10 @@ def see_project():
     title = request.args.get("title")
     project_info = hackbright.get_project_by_title(title)
 
+    print "************************"
+    print project_info
+    print "************************"
+
     return render_template("display_project.html", project_info=project_info)
 
 
