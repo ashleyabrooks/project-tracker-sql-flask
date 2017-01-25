@@ -4,6 +4,12 @@ import hackbright
 
 app = Flask(__name__)
 
+@app.route("/")
+def show_home_page():
+    students = hackbright.get_all_students()
+    print students
+    return ''
+
 
 @app.route("/student")
 def get_student():
@@ -58,12 +64,12 @@ def see_project():
 
     title = request.args.get("title")
     project_info = hackbright.get_project_by_title(title)
+    project_grades_students = hackbright.get_grades_by_title(title)
+    print project_grades_students
 
-    print "************************"
-    print project_info
-    print "************************"
-
-    return render_template("display_project.html", project_info=project_info)
+    return render_template("display_project.html",
+                           project_info=project_info,
+                           project_grades_students=project_grades_students)
 
 
 if __name__ == "__main__":

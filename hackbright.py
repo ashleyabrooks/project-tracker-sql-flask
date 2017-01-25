@@ -125,6 +125,19 @@ def get_grades_by_title(title):
     return rows
 
 
+def get_all_students():
+    """Get a list of all students and a list of all projects."""
+
+    QUERY = """
+        SELECT *
+        FROM students
+        """
+    db_cursor = db.session.execute(QUERY)
+    rows = db_cursor.fetchall()
+
+    return rows
+
+
 def handle_input():
     """Main loop.
 
